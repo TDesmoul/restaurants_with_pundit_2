@@ -21,7 +21,8 @@ class RestaurantsController < ApplicationController
 
   # POST /restaurants
   def create
-    @restaurant = current_user.restaurants.new(restaurant_params)
+    @restaurant = Restaurants.new(restaurant_params)
+    @restaurant.user = current_user
 
     if @restaurant.save
       redirect_to restaurants_path, notice: 'Restaurant was successfully created.'
